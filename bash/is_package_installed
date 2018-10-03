@@ -1,0 +1,7 @@
+IS__package__INSTALLED=`apt-cache policy _package_ | grep Installed | grep none`
+
+if [ "$IS__package__INSTALLED" != "" ]; then
+	echo "*** $IS__package__INSTALLED not installed!" 1>&2
+	exit 1
+fi
+

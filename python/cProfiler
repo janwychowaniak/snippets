@@ -1,0 +1,8 @@
+import cProfile, pstats														# profiling
+
+	pr = cProfile.Profile()													# profiling
+	pr.enable()																# profiling
+	...
+	pr.disable()															# profiling
+
+	pstats.Stats(pr).strip_dirs().sort_stats('cumulative').print_stats(0)	# profiling

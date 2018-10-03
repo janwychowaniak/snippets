@@ -1,0 +1,26 @@
+# ------------------------------------------------ #
+# http://docs.python.org/2/library/subprocess.html #
+# ------------------------------------------------ #
+
+import subprocess
+
+
+try:
+	subprocess.check_call(COMMAND, shell=True)
+except subprocess.CalledProcessError as ex:
+	print "CalledProcessError - status %d from %s" % (ex.returncode, ex.cmd)
+
+try:
+	OUTPUT = subprocess.check_output(COMMAND, shell=True)
+except subprocess.CalledProcessError as ex:
+	print "CalledProcessError - status %d from %s" % (ex.returncode, ex.cmd)
+
+
+def cmd_outp(COMMAND):
+	try:
+		OUTPUT = subprocess.check_output(COMMAND, shell=True).strip()
+	except subprocess.CalledProcessError as ex:
+		print "CalledProcessError - status %d from %s" % (ex.returncode, ex.cmd)
+		raise
+	return OUTPUT
+

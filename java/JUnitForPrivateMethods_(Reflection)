@@ -1,0 +1,28 @@
+	// Test na normalne dzialanie
+	@Test
+	public void testNAZWA_METODY() throws 	SecurityException, NoSuchMethodException, // nazwa metody
+										InstantiationException, IllegalAccessException, 
+										IllegalArgumentException, InvocationTargetException {
+		Method m = NAZWA_KLASY.class.getDeclaredMethod("NAZWA_METODY", new Class[] {Integer.class});	// nazwa klasy, nazwa metody, argumenty (metoda testowana nie moze przyjmowac typow prymitywnych, obawiam sie)
+		m.setAccessible(true);
+		Object i = NAZWA_KLASY.class.newInstance();	// nazwa klasy
+		
+		Object r;
+		r = m.invoke(i, new Object[] {new Integer(0)});	assertEquals("00", r);	// argumenty, jakies asserty
+		// dalej zapewne seria podobnych linijek
+	}
+
+	// Test na wyjatek
+	@Test(expected = InvocationTargetException.class)	// caused by IllegalArgumentException 
+	public void testNAZWA_METODYForException() throws 	SecurityException, NoSuchMethodException,  // nazwa metody
+										InstantiationException, IllegalAccessException, 
+										IllegalArgumentException, InvocationTargetException {
+		Method m = NAZWA_KLASY.class.getDeclaredMethod("NAZWA_METODY", new Class[] {Integer.class});	// nazwa klasy, nazwa metody, argumenty
+		m.setAccessible(true);
+		Object i = NAZWA_KLASY.class.newInstance();	// nazwa klasy
+		
+		Object r;
+		r = m.invoke(i, new Object[] {new Integer(1)});	assertEquals("01", r);	// argumenty, jakies asserty
+		// dalej zapewne seria podobnych linijek
+	}
+

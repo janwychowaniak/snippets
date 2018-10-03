@@ -1,0 +1,26 @@
+//~ INCLUDY:
+	//~ #include <vector>
+	//~ #include <fstream>
+	//~ #include <string>
+
+//~ UZYCIE:
+	//~ string filename = "leo-wnioski";
+	//~ vector<double> linesVector;
+	//~ ReadTextFileToVectorAsDoubleNumbers(filename, linesVector);
+
+
+
+void ReadTextFileToVectorAsDoubleNumbers (const std::string & filename, std::vector<double> & linesVector)
+{
+	linesVector.clear();
+
+	std::ifstream file_op(filename.c_str());
+	double num;
+	
+	file_op >> num;
+	while ( !file_op.eof() ) {
+		linesVector.push_back(num);
+		file_op >> num;
+	}
+	file_op.close();
+}

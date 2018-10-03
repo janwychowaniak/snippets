@@ -1,0 +1,35 @@
+//~ INCLUDY:
+	//~ #include <vector>
+	//~ #include <string>
+
+//~ UZYCIE:
+	//~ string do_rozjebania = "A ifstream object of the same type (with the same class template parameters charT and traits), whose value is moved";
+	//~ vector<string> vecString = StringSplit(do_rozjebania);
+
+
+
+
+std::vector<std::string> inline StringSplit(const std::string &source, const char *delimiter = " ", bool keepEmpty = false)
+{
+    std::vector<std::string> results;
+
+    size_t prev = 0;
+    size_t next = 0;
+
+    while ((next = source.find_first_of(delimiter, prev)) != std::string::npos)
+    {
+        if (keepEmpty || (next - prev != 0))
+        {
+            results.push_back(source.substr(prev, next - prev));
+        }
+        prev = next + 1;
+    }
+
+    if (prev < source.size())
+    {
+        results.push_back(source.substr(prev));
+    }
+
+    return results;
+}
+

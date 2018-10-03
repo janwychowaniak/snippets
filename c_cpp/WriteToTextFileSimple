@@ -1,0 +1,11 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+
+	ofstream out1roi;
+	
+	out1roi.open ("output_roi.txt");
+	out1roi << "here will be the roi of the image" << endl;
+	out1roi.close();

@@ -1,0 +1,6 @@
+if [ "root" != `whoami` ]
+then
+    echo " *** not root!" 1>&2
+#    exit 1
+fi
+

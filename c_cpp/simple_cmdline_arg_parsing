@@ -1,0 +1,51 @@
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+
+using namespace std;
+
+// app -d nr		, e.g. app -d 1
+// app -l
+
+// app -d nr -l
+// app -l -d nr
+
+int main(int argc, char* argv[])
+{
+	bool 	d_flag 		= false,
+			l_flag 		= false;
+	char *	d_val_char	= NULL;
+	int		d_val;
+
+	int i, n;
+	for(i=n=1; i<argc; i=n)
+	{
+		n++;
+		if(argv[i][0] == '-' && argv[i][1])
+		{
+			switch(argv[i][1])
+			{
+				default :	fprintf(stderr,"Invalid option: %s.\n", argv[i]); exit(1); break;
+				case 'l':	l_flag = true; break;
+				case 'd':
+					if ((d_val_char = argv[n++]) == NULL) {
+						fprintf(stderr,"Missing argument to -d option.\n");
+						exit(1);
+					}
+					d_val = atoi(d_val_char);
+					if (d_val <= 0) {
+						fprintf(stderr,"tree: Invalid d_val, must be greater than 0.\n");
+						exit(1);
+					}
+					d_flag = true;
+					break;
+			}
+		}
+	}
+	
+	if (l_flag)	cout << "l_flag set" << endl;
+	if (d_flag)	cout << "d_flag set with the value of " << d_val << endl;
+
+	return 0;
+}
+

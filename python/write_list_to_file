@@ -1,0 +1,5 @@
+# with newlines, file contents overwritten
+with open('dest', 'w') as f:
+	for i in lista:
+		print>>f, i
+

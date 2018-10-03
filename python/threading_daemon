@@ -1,0 +1,62 @@
+#!/usr/bin/python
+
+
+
+
+
+import threading
+import signal
+import time
+import sys
+
+
+
+class Clazz(threading.Thread):
+	
+	def __init__(self, _interval):
+		threading.Thread.__init__(self)
+#		self._stop           = threading.Event()
+		self.interval        = _interval
+
+		self.daemon = True
+#		self.start()
+
+
+
+	def run(self):
+		while True:		#		while not self.stopped():
+			time.sleep(self.interval)
+			print threading.current_thread()
+
+
+#	def stop(self):
+#		self._stop.set()
+
+#	def stopped(self):
+#		return self._stop.isSet()
+
+
+
+
+
+if __name__ == '__main__':
+
+
+	def signal_handler(signal, frame):
+		print 'Ctrl+C!'
+#		c.stop()
+#		c.join()
+		print " Program quits"
+		sys.exit(0)
+
+	signal.signal(signal.SIGINT, signal_handler)
+
+	c = Clazz(1)
+	c.start()
+
+##	  main thread waits for signal
+##	  ending or joining this thread to another deafens the sighandler.
+##	  with this sleep other threads can be daemons, no care.
+	while True:
+		time.sleep(10)
+

@@ -1,0 +1,18 @@
+
+/**
+ * Store data from a vector of T's to a text file.
+ * The file is arranged vertically (piece of data per line),
+ * and is overwritten each time the function gets invoked.
+ */
+template <typename T>
+void StoreVectorToFile (const std::vector<T> & data, const std::string & output_file_name)
+{
+	std::fstream output_file (output_file_name.c_str(), std::fstream::out | std::fstream::trunc);
+
+	for (typename std::vector<T>::const_iterator it = data.begin(); it !=data.end(); ++it) {
+		output_file << *it << std::endl;
+	}
+
+	output_file.close();
+}
+

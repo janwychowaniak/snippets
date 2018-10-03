@@ -1,0 +1,42 @@
+// app -d nr		, e.g. app -d 1
+// app -l
+
+// app -d nr -l
+// app -l -d nr
+
+public int main(string[] args) {
+	bool 	d_flag 		= false,
+			l_flag 		= false;
+	string	d_val_str	= null;
+	int		d_val		= 0;
+	
+	int i,n;
+	for(i=n=1; i<args.length; i=n)
+	{
+		n++;
+		if (args[i].has_prefix("-") && args[i].length>1)
+		{
+			switch(args[i].get_char(1))
+			{
+				default : 	stderr.printf("Invalid option: %s\n", args[i]); return 1;
+				case 'l':	l_flag = true; break;
+				case 'd':
+					if ((d_val_str = args[n++]) == null) {
+						stderr.printf("Missing argument to -d option.\n");
+						return 1;
+					}
+					d_val = d_val_str.to_int();
+					if (d_val <= 0) {
+						stderr.printf("Invalid d_val, must be greater than 0.\n");
+						return 1;
+					}
+					d_flag = true;
+					break;
+			}
+		}
+	}
+	if (l_flag)	stdout.printf("l_flag set\n");
+	if (d_flag)	stdout.printf("d_flag set with the value of %d\n", d_val);
+
+	return 0;
+}

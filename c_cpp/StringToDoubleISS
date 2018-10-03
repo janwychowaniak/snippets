@@ -1,0 +1,16 @@
+//~ IMPORTY:
+	//~ #include <string>
+	//~ #include <sstream>
+
+//~ UZYCIE:
+	//~ string s = "3.14";
+	//~ double result = StringToDoubleISS(s);
+
+
+double StringToDoubleISS(const std::string & inputstr)
+{
+	double result;
+	std::istringstream converter(inputstr);
+	converter >> result;
+	return result;
+}

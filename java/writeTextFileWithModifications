@@ -1,0 +1,44 @@
+	/**
+	 * 2010-10-26
+	 * 
+	 * Metoda z dziedziny File IO. Przyjmuje liste String'ow
+	 * i linijka po linijce zapisuje do podanego
+	 * pliku output'owego. W locie mozna wprowadzac modyfikacje.
+	 * 
+	 * Potrzebne importy:
+	 *  import java.io.File;
+	 *  import java.io.IOException;
+	 *  import java.io.BufferedWriter;
+	 *  import java.io.FileWriter;
+	 *  import java.io.PrintWriter;
+	 *  import java.util.ArrayList;
+	 * 
+	 * @param File fileOut	plik docelowy
+	 * @param ArrayList<String> stringArray	lista do zapisania
+	 * @param String	dodatkowy element do wszczepienia po drodze. Jesli NULL, bez zmian.
+	 * @return false, jesli cos nawalilo po drodze
+	 */
+	private static boolean writeTextFileWithModifications(File fileOut, ArrayList<String> stringArray, String addition) { // throws FileNotFoundException, IOException {
+        boolean status = true;
+        PrintWriter outputStream = null;
+
+        try {
+            outputStream = new PrintWriter(new BufferedWriter(new FileWriter(fileOut)));
+
+            for (String line: stringArray) {			// tu miesci sie petla przetwarzania
+				if (addition != null && line.contains("new")) {
+                    outputStream.println(addition);
+                }
+                outputStream.println(line);
+			}
+        } catch (IOException ex) {
+//            Logger.getLogger(HamsterAverage.class.getName()).log(Level.SEVERE, null, ex);
+            status = false;
+        } finally {
+            if (outputStream != null) {
+                outputStream.close();
+            }
+        }
+
+        return status;
+    }

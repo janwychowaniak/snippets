@@ -1,0 +1,4 @@
+	for (std::vector<double>::const_iterator it = TUZMIEN.begin(); it !=TUZMIEN.end(); ++it) {
+		output_file << *it << std::endl;
+	}
+

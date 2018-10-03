@@ -1,0 +1,18 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+
+int main(int argc, char* argv[])
+{
+	
+	for (int i = 1; i < argc; i++)
+	{
+		cout << "arg " << i << "(int): \t" << atoi(argv[i]) << endl;
+		cout << "arg " << i << "(double): \t" << strtod(argv[i], NULL) << endl << endl;
+	}
+
+	return 0;
+}
+

@@ -1,0 +1,10 @@
+import sys
+
+
+    if len(sys.argv) < 4:
+        sys.stderr.write('Usage:')                                                          ; sys.stderr.flush()
+        sys.stderr.write('  %s   interval   file1   file2   [file3   [...]]' % sys.argv[0]) ; sys.stderr.flush()
+        sys.stderr.write('\n')                                                              ; sys.stderr.flush()
+        sys.exit(1)
+
+    arg1 = sys.argv[1]
