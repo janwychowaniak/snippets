@@ -1,0 +1,13 @@
+przebiegnijSieDlaTreninguRekursywniePoJakiejsPrzykladowejStrukturze() {
+  echo -n " --> " ; pwd
+  echo -n ' @@@ ' ; pwd # PLACEHOLDER dla operacji, ktora ma sie zadziac
+  ls -1 | while read plikLubFolder; do
+    if [ -d "$plikLubFolder" ]; then
+      cd "$plikLubFolder"
+      przebiegnijSieDlaTreninguRekursywniePoJakiejsPrzykladowejStrukturze
+      cd ..
+    fi
+  done
+  echo -n " <-- " ; pwd
+}
+
