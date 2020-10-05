@@ -1,10 +1,11 @@
 import sys
+import os
 
 
     if len(sys.argv) < 4:
-        sys.stderr.write('Usage:')                                                          ; sys.stderr.flush()
-        sys.stderr.write('  %s   interval   file1   file2   [file3   [...]]' % sys.argv[0]) ; sys.stderr.flush()
-        sys.stderr.write('\n')                                                              ; sys.stderr.flush()
+        print('*** Usage:', file=sys.stderr)
+        print(f'    {sys.argv[0]}   interval   file1   file2   [file3   [...]]', file=sys.stderr)
+        print(os.linesep, file=sys.stderr)
         sys.exit(1)
 
-    arg1 = sys.argv[1]
+    ARG1 = sys.argv[1]
